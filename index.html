@@ -5,18 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CRM · Lavandería Aquaman</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
     * { font-family: 'Inter', sans-serif; }
     .fade-in { animation: fadeIn .2s ease; }
     @keyframes fadeIn { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:translateY(0); } }
-
-    .status-pendiente { background:#fef9c3; color:#854d0e; }
-    .status-listo     { background:#dcfce7; color:#16a34a; }
-    .status-recogido  { background:#e0e7ff; color:#3730a3; }
     .notif-si { background:#dcfce7; color:#15803d; border:1px solid #bbf7d0; }
     .notif-no { background:#fef2f2; color:#dc2626; border:1px solid #fecaca; }
-
     .wa-btn {
       display:inline-flex; align-items:center; justify-content:center;
       gap:6px; font-weight:600; font-size:.8rem;
@@ -27,12 +23,8 @@
     .wa-btn-nuevo:hover    { background:#16a34a; }
     .wa-btn-reenviar { background:#f0fdf4; color:#16a34a; border:1.5px solid #86efac; }
     .wa-btn-reenviar:hover { background:#dcfce7; }
-
-    /* Nav tabs */
     .nav-tab { transition: all .15s; }
-    .nav-tab.activo {
-      color:#2563eb; border-bottom:3px solid #2563eb; font-weight:600;
-    }
+    .nav-tab.activo { color:#2563eb; border-bottom:3px solid #2563eb; font-weight:600; }
     .tab-activo { background:#2563eb !important; color:#fff !important; border-color:#2563eb !important; }
   </style>
 </head>
@@ -53,26 +45,16 @@
       + Nuevo pedido
     </button>
   </div>
-
-  <!-- NAV TABS -->
   <div class="max-w-4xl mx-auto px-4 flex gap-0 border-t border-blue-500">
     <button onclick="irSeccion('pedidos')" id="nav-pedidos"
-      class="nav-tab activo px-6 py-3 text-sm text-white border-b-3 border-transparent">
-      📋 Pedidos
-    </button>
+      class="nav-tab activo px-6 py-3 text-sm text-white">📋 Pedidos</button>
     <button onclick="irSeccion('clientes')" id="nav-clientes"
-      class="nav-tab px-6 py-3 text-sm text-blue-200 border-b-3 border-transparent">
-      👥 Clientes
-    </button>
+      class="nav-tab px-6 py-3 text-sm text-blue-200">👥 Clientes</button>
   </div>
 </header>
 
-<!-- ══════════════════════════════════════════════
-     SECCIÓN PEDIDOS
-══════════════════════════════════════════════ -->
+<!-- ══ SECCIÓN PEDIDOS ══ -->
 <div id="sec-pedidos">
-
-  <!-- BÚSQUEDA + ORDEN -->
   <div class="max-w-4xl mx-auto px-4 mt-6 flex gap-2">
     <div class="relative flex-1">
       <span class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">🔍</span>
@@ -86,20 +68,16 @@
       <option value="asc">Más antiguo</option>
     </select>
   </div>
-
-  <!-- FILTROS PEDIDOS -->
   <div class="max-w-4xl mx-auto px-4 mt-4">
     <div class="flex gap-2 flex-wrap">
-      <button onclick="setFiltroP('notif','todos')" id="tab-notif-todos" class="tab-btn px-4 py-1.5 rounded-full text-xs font-medium border transition">Todos</button>
-      <button onclick="setFiltroP('notif','no')"    id="tab-notif-no"   class="tab-btn px-4 py-1.5 rounded-full text-xs font-medium border transition">📵 Sin avisar</button>
-      <button onclick="setFiltroP('notif','si')"    id="tab-notif-si"   class="tab-btn px-4 py-1.5 rounded-full text-xs font-medium border transition">📨 Ya avisados</button>
+      <button onclick="setFiltroP('todos')" id="tab-notif-todos" class="tab-btn px-4 py-1.5 rounded-full text-xs font-medium border transition">Todos</button>
+      <button onclick="setFiltroP('no')"    id="tab-notif-no"   class="tab-btn px-4 py-1.5 rounded-full text-xs font-medium border transition">📵 Sin avisar</button>
+      <button onclick="setFiltroP('si')"    id="tab-notif-si"   class="tab-btn px-4 py-1.5 rounded-full text-xs font-medium border transition">📨 Ya avisados</button>
     </div>
   </div>
-
   <div class="max-w-4xl mx-auto px-4 mt-2">
     <p id="contador" class="text-xs text-slate-400"></p>
   </div>
-
   <div id="lista-pedidos" class="max-w-4xl mx-auto px-4 mt-2 pb-20 space-y-3"></div>
   <div id="vacio-pedidos" class="hidden max-w-4xl mx-auto px-4 mt-16 text-center text-slate-400">
     <div class="text-5xl mb-3">🧺</div>
@@ -108,35 +86,28 @@
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════════
-     SECCIÓN CLIENTES
-══════════════════════════════════════════════ -->
+<!-- ══ SECCIÓN CLIENTES ══ -->
 <div id="sec-clientes" class="hidden">
-
-  <div class="max-w-4xl mx-auto px-4 mt-6 flex gap-2">
-    <div class="relative flex-1">
+  <div class="max-w-4xl mx-auto px-4 mt-6">
+    <div class="relative">
       <span class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">🔍</span>
       <input id="buscador-cli" type="text" placeholder="Buscar cliente por nombre o celular..."
         class="w-full pl-10 pr-4 py-3 rounded-xl border border-slate-200 bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 text-sm"
         oninput="renderClientes()" />
     </div>
   </div>
-
   <div class="max-w-4xl mx-auto px-4 mt-2">
     <p id="contador-cli" class="text-xs text-slate-400"></p>
   </div>
-
   <div id="lista-clientes" class="max-w-4xl mx-auto px-4 mt-2 pb-20 space-y-3"></div>
-  <div id="vacio-clientes" class="hidden max-w-4xl mx-auto px-4 mt-16 text-center text-slate-400">
+  <div id="vacio-clientes" class="hidden max-w-4xl mx-aware px-4 mt-16 text-center text-slate-400">
     <div class="text-5xl mb-3">👥</div>
     <p class="text-lg font-medium">Sin clientes aún</p>
     <p class="text-sm">Los clientes aparecen aquí automáticamente cuando creas pedidos</p>
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════════
-     MODAL DETALLE CLIENTE
-══════════════════════════════════════════════ -->
+<!-- MODAL DETALLE CLIENTE -->
 <div id="modal-cliente" class="hidden fixed inset-0 bg-black/40 z-50 flex items-center justify-center p-4">
   <div class="bg-white rounded-2xl shadow-xl w-full max-w-lg fade-in max-h-[90vh] flex flex-col">
     <div class="flex items-center justify-between px-6 pt-5 pb-3 border-b shrink-0">
@@ -147,9 +118,7 @@
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════════
-     MODAL NUEVO / EDITAR PEDIDO
-══════════════════════════════════════════════ -->
+<!-- MODAL NUEVO / EDITAR -->
 <div id="modal" class="hidden fixed inset-0 bg-black/40 z-50 flex items-center justify-center p-4">
   <div class="bg-white rounded-2xl shadow-xl w-full max-w-md fade-in">
     <div class="flex items-center justify-between px-6 pt-5 pb-3 border-b">
@@ -168,7 +137,6 @@
         <input id="f-nombre" type="text" required placeholder="Ej: María García"
           class="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
           oninput="sugerirCliente(this.value)" autocomplete="off" />
-        <!-- Sugerencias -->
         <div id="sugerencias" class="hidden border border-slate-200 rounded-lg mt-1 bg-white shadow-md overflow-hidden"></div>
       </div>
       <div>
@@ -188,7 +156,7 @@
       <div class="flex gap-3 pt-1">
         <button type="button" onclick="cerrarModal()"
           class="flex-1 border border-slate-200 text-slate-600 rounded-lg py-2 text-sm font-medium hover:bg-slate-50">Cancelar</button>
-        <button type="submit"
+        <button type="submit" id="btn-guardar"
           class="flex-1 bg-blue-600 text-white rounded-lg py-2 text-sm font-semibold hover:bg-blue-700">Guardar</button>
       </div>
     </form>
@@ -206,27 +174,46 @@
   </div>
 </div>
 
+<!-- LOADING -->
+<div id="loading" class="hidden fixed inset-0 bg-white/70 z-40 flex items-center justify-center">
+  <div class="text-blue-600 text-4xl animate-spin">⏳</div>
+</div>
+
 <!-- TOAST -->
 <div id="toast" class="hidden fixed bottom-6 left-1/2 -translate-x-1/2 bg-slate-800 text-white text-sm px-5 py-3 rounded-xl shadow-lg z-50"></div>
 
 <script>
-const KEY = 'aquaman_crm_v1';
-let filtroEstado = 'todos';
-let filtroNotif  = 'todos';
+// ─── SUPABASE ────────────────────────────────────────────────
+const SUPA_URL = 'https://gdmgpfymwcfuryecccpy.supabase.co';
+const SUPA_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdkbWdwZnltd2NmdXJ5ZWNjY3B5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk5ODMyNzQsImV4cCI6MjA5NTU1OTI3NH0.RFxMrMMcN12rTRk5QO281F5X1MP3A48dOUhhd0pXi84';
+const sb = supabase.createClient(SUPA_URL, SUPA_KEY);
+
+let todosLosPedidos = [];
+let filtroNotif = 'todos';
 let seccionActiva = 'pedidos';
 
-function cargar() { return JSON.parse(localStorage.getItem(KEY) || '[]'); }
-function guardar(d) { localStorage.setItem(KEY, JSON.stringify(d)); }
+// ─── LOADING ─────────────────────────────────────────────────
+function showLoad() { document.getElementById('loading').classList.remove('hidden'); }
+function hideLoad() { document.getElementById('loading').classList.add('hidden'); }
 
+// ─── CARGAR DATOS ────────────────────────────────────────────
+async function cargarDatos() {
+  showLoad();
+  const { data, error } = await sb.from('pedidos').select('*').order('created_at', { ascending: false });
+  hideLoad();
+  if (error) { mostrarToast('❌ Error al cargar datos'); console.error(error); return; }
+  todosLosPedidos = data || [];
+}
+
+// ─── HELPERS ─────────────────────────────────────────────────
 function fechaCorta(ts) {
   if (!ts) return '';
-  return new Date(Number(ts)).toLocaleDateString('es-PE', { day:'2-digit', month:'short', year:'numeric' });
+  return new Date(ts).toLocaleDateString('es-PE', { day:'2-digit', month:'short', year:'numeric' });
 }
 function fechaMes(ts) {
   if (!ts) return '';
-  return new Date(Number(ts)).toLocaleDateString('es-PE', { month:'long', year:'numeric' });
+  return new Date(ts).toLocaleDateString('es-PE', { month:'long', year:'numeric' });
 }
-
 function urlWA(c) {
   const tel = '51' + c.celular.replace(/\D/g,'');
   const msg = `Hola ${c.nombre} 👋, te avisamos que tu ropa de la *Lavandería Aquaman* ya está lavada, doblada y perfumada lista para recoger.🤩\n\n📋 Boleta: *${c.codigo}*\n\n¡Te esperamos! 🌊`;
@@ -249,7 +236,6 @@ function irSeccion(sec) {
   document.getElementById('nav-pedidos').classList.toggle('text-blue-200', sec !== 'pedidos');
   document.getElementById('nav-clientes').classList.toggle('text-white', sec === 'clientes');
   document.getElementById('nav-clientes').classList.toggle('text-blue-200', sec !== 'clientes');
-  document.getElementById('btn-nuevo').textContent = sec === 'pedidos' ? '+ Nuevo pedido' : '';
   document.getElementById('btn-nuevo').style.display = sec === 'pedidos' ? '' : 'none';
   if (sec === 'clientes') renderClientes();
   else renderPedidos();
@@ -261,18 +247,18 @@ function renderPedidos() {
   const vacio = document.getElementById('vacio-pedidos');
   const q     = document.getElementById('buscador').value.toLowerCase().trim();
   const orden = document.getElementById('orden').value;
-  let datos   = cargar();
+  let datos   = [...todosLosPedidos];
 
-  if (filtroEstado !== 'todos') datos = datos.filter(c => c.estado === filtroEstado);
-  if (filtroNotif === 'si')     datos = datos.filter(c => c.notificado);
-  if (filtroNotif === 'no')     datos = datos.filter(c => !c.notificado);
+  if (filtroNotif === 'si') datos = datos.filter(c => c.notificado);
+  if (filtroNotif === 'no') datos = datos.filter(c => !c.notificado);
   if (q) datos = datos.filter(c =>
     c.codigo.toLowerCase().includes(q) || c.nombre.toLowerCase().includes(q));
 
-  datos.sort((a,b) => orden==='desc' ? Number(b.id)-Number(a.id) : Number(a.id)-Number(b.id));
+  datos.sort((a,b) => orden === 'desc'
+    ? new Date(b.created_at) - new Date(a.created_at)
+    : new Date(a.created_at) - new Date(b.created_at));
 
-  const total     = cargar();
-  const sinAvisar = total.filter(c => !c.notificado && c.estado !== 'recogido').length;
+  const sinAvisar = todosLosPedidos.filter(c => !c.notificado).length;
   document.getElementById('contador').textContent =
     `${datos.length} pedido${datos.length!==1?'s':''} · ${sinAvisar} sin avisar`;
 
@@ -286,6 +272,10 @@ function renderPedidos() {
       (c.notificado ? 'border-slate-100' : 'border-orange-100');
     card.onclick = () => abrirDetalle(c.id);
 
+    const notifBadge = c.notificado
+      ? `<span class="notif-si text-xs font-semibold px-2 py-0.5 rounded-full">📨 Avisado</span>`
+      : `<span class="notif-no text-xs font-semibold px-2 py-0.5 rounded-full">📵 Sin avisar</span>`;
+
     const btnWA = c.notificado
       ? `<a href="${urlWA(c)}" target="_blank" rel="noopener"
             onclick="event.stopPropagation(); registrarAviso('${c.id}')"
@@ -293,10 +283,6 @@ function renderPedidos() {
       : `<a href="${urlWA(c)}" target="_blank" rel="noopener"
             onclick="event.stopPropagation(); registrarAviso('${c.id}')"
             class="wa-btn wa-btn-nuevo shrink-0">${WA_SVG} Avisar recojo</a>`;
-
-    const notifBadge = c.notificado
-      ? `<span class="notif-si text-xs font-semibold px-2 py-0.5 rounded-full">📨 Avisado</span>`
-      : `<span class="notif-no text-xs font-semibold px-2 py-0.5 rounded-full">📵 Sin avisar</span>`;
 
     card.innerHTML = `
       <div class="flex-1 min-w-0">
@@ -306,7 +292,7 @@ function renderPedidos() {
         </div>
         <p class="font-semibold text-slate-800 mt-0.5 truncate">${c.nombre}</p>
         <p class="text-xs text-slate-400 mt-0.5">
-          📅 ${fechaCorta(c.id)}${c.nota ? ' · '+c.nota : ''}${c.fechaAviso ? ' · ✉️ avisado '+c.fechaAviso : ''}
+          📅 ${fechaCorta(c.created_at)}${c.nota?' · '+c.nota:''}${c.fecha_aviso?' · ✉️ avisado '+c.fecha_aviso:''}
         </p>
       </div>
       ${btnWA}`;
@@ -314,20 +300,14 @@ function renderPedidos() {
   });
 }
 
-function labelEstado(e) {
-  return { pendiente:'⏳ En proceso', listo:'✅ Lista', recogido:'📦 Recogida' }[e] || e;
-}
-
-// ─── RENDER CLIENTES ──────────────────────────────────────────
+// ─── RENDER CLIENTES ─────────────────────────────────────────
 function renderClientes() {
   const lista = document.getElementById('lista-clientes');
   const vacio = document.getElementById('vacio-clientes');
   const q     = document.getElementById('buscador-cli').value.toLowerCase().trim();
-  const datos = cargar();
 
-  // Agrupar por nombre+celular
   const mapa = {};
-  datos.forEach(p => {
+  todosLosPedidos.forEach(p => {
     const key = p.nombre.trim().toLowerCase() + '|' + p.celular.replace(/\D/g,'');
     if (!mapa[key]) mapa[key] = { nombre: p.nombre, celular: p.celular, pedidos: [] };
     mapa[key].pedidos.push(p);
@@ -337,25 +317,24 @@ function renderClientes() {
   if (q) clientes = clientes.filter(c =>
     c.nombre.toLowerCase().includes(q) || c.celular.includes(q));
 
-  // Ordenar por pedido más reciente
   clientes.sort((a,b) => {
-    const maxA = Math.max(...a.pedidos.map(p => Number(p.id)));
-    const maxB = Math.max(...b.pedidos.map(p => Number(p.id)));
+    const maxA = Math.max(...a.pedidos.map(p => new Date(p.created_at)));
+    const maxB = Math.max(...b.pedidos.map(p => new Date(p.created_at)));
     return maxB - maxA;
   });
 
   document.getElementById('contador-cli').textContent =
-    `${clientes.length} cliente${clientes.length!==1?'s':''} · ${datos.length} pedidos en total`;
+    `${clientes.length} cliente${clientes.length!==1?'s':''} · ${todosLosPedidos.length} pedidos en total`;
 
   lista.innerHTML = '';
   if (clientes.length === 0) { vacio.classList.remove('hidden'); return; }
   vacio.classList.add('hidden');
 
   clientes.forEach(c => {
-    const total    = c.pedidos.length;
-    const recogidos = c.pedidos.filter(p => p.estado === 'recogido').length;
-    const pendientes = c.pedidos.filter(p => p.estado !== 'recogido').length;
-    const ultimoPedido = c.pedidos.reduce((a,b) => Number(a.id)>Number(b.id)?a:b);
+    const total      = c.pedidos.length;
+    const sinAvisar  = c.pedidos.filter(p => !p.notificado).length;
+    const ultimoPedido = c.pedidos.reduce((a,b) =>
+      new Date(a.created_at) > new Date(b.created_at) ? a : b);
 
     const card = document.createElement('div');
     card.className = 'bg-white rounded-xl border border-slate-100 shadow-sm px-5 py-4 flex items-center gap-4 fade-in cursor-pointer hover:shadow-md transition';
@@ -366,14 +345,15 @@ function renderClientes() {
       </div>
       <div class="flex-1 min-w-0">
         <p class="font-semibold text-slate-800 truncate">${c.nombre}</p>
-        <p class="text-xs text-slate-400">+51 ${c.celular} · último pedido: ${fechaCorta(ultimoPedido.id)}</p>
+        <p class="text-xs text-slate-400">+51 ${c.celular} · último pedido: ${fechaCorta(ultimoPedido.created_at)}</p>
       </div>
       <div class="text-right shrink-0">
         <p class="text-lg font-bold text-blue-600">${total}</p>
         <p class="text-xs text-slate-400">${total===1?'pedido':'pedidos'}</p>
-        ${pendientes > 0 ? `<p class="text-xs text-orange-500 font-semibold">${pendientes} activo${pendientes!==1?'s':''}</p>` : '<p class="text-xs text-green-600">todo recogido</p>'}
-      </div>
-    `;
+        ${sinAvisar > 0
+          ? `<p class="text-xs text-orange-500 font-semibold">${sinAvisar} sin avisar</p>`
+          : '<p class="text-xs text-green-600">todos avisados</p>'}
+      </div>`;
     lista.appendChild(card);
   });
 }
@@ -382,22 +362,20 @@ function renderClientes() {
 function abrirModalCliente(c) {
   document.getElementById('cli-titulo').textContent = c.nombre;
 
-  // Agrupar pedidos por mes
   const porMes = {};
   c.pedidos.forEach(p => {
-    const mes = fechaMes(p.id);
+    const mes = fechaMes(p.created_at);
     if (!porMes[mes]) porMes[mes] = [];
     porMes[mes].push(p);
   });
-  // Ordenar meses desc
   const meses = Object.keys(porMes).sort((a,b) => {
-    const maxA = Math.max(...porMes[a].map(p=>Number(p.id)));
-    const maxB = Math.max(...porMes[b].map(p=>Number(p.id)));
+    const maxA = Math.max(...porMes[a].map(p => new Date(p.created_at)));
+    const maxB = Math.max(...porMes[b].map(p => new Date(p.created_at)));
     return maxB - maxA;
   });
 
   const total     = c.pedidos.length;
-  const recogidos = c.pedidos.filter(p=>p.estado==='recogido').length;
+  const avisados  = c.pedidos.filter(p => p.notificado).length;
 
   let html = `
     <div class="flex items-center gap-4 bg-blue-50 rounded-xl px-4 py-3">
@@ -415,18 +393,18 @@ function abrirModalCliente(c) {
         <p class="text-xs text-slate-400">Pedidos</p>
       </div>
       <div class="bg-slate-50 rounded-xl py-3">
-        <p class="text-2xl font-bold text-green-600">${recogidos}</p>
-        <p class="text-xs text-slate-400">Recogidos</p>
+        <p class="text-2xl font-bold text-green-600">${avisados}</p>
+        <p class="text-xs text-slate-400">Avisados</p>
       </div>
       <div class="bg-slate-50 rounded-xl py-3">
-        <p class="text-2xl font-bold text-orange-500">${total-recogidos}</p>
-        <p class="text-xs text-slate-400">Activos</p>
+        <p class="text-2xl font-bold text-orange-500">${total-avisados}</p>
+        <p class="text-xs text-slate-400">Sin avisar</p>
       </div>
     </div>
     <p class="text-xs text-slate-400 font-semibold uppercase tracking-wide">Historial de pedidos</p>`;
 
   meses.forEach(mes => {
-    const pedidos = porMes[mes].sort((a,b) => Number(b.id)-Number(a.id));
+    const pedidos = porMes[mes].sort((a,b) => new Date(b.created_at) - new Date(a.created_at));
     html += `<div>
       <p class="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-2 capitalize">${mes}</p>
       <div class="space-y-2">`;
@@ -442,7 +420,7 @@ function abrirModalCliente(c) {
               <span class="font-mono text-sm font-bold text-blue-600">${p.codigo}</span>
               ${notifBadge}
             </div>
-            <p class="text-xs text-slate-400 mt-0.5">📅 ${fechaCorta(p.id)}${p.nota?' · '+p.nota:''}</p>
+            <p class="text-xs text-slate-400 mt-0.5">📅 ${fechaCorta(p.created_at)}${p.nota?' · '+p.nota:''}</p>
           </div>
           <a href="${urlWA(p)}" target="_blank" rel="noopener"
              onclick="event.stopPropagation(); registrarAviso('${p.id}')"
@@ -461,38 +439,30 @@ function cerrarModalCliente() {
   document.getElementById('modal-cliente').classList.add('hidden');
 }
 
-// ─── REGISTRAR AVISO ──────────────────────────────────────────
-function registrarAviso(id) {
-  const datos = cargar();
-  const idx   = datos.findIndex(x => x.id === id);
-  if (idx < 0) return;
-  datos[idx].notificado = true;
-  datos[idx].fechaAviso = new Date().toLocaleDateString('es-PE', { day:'2-digit', month:'short' });
-  guardar(datos);
-  setTimeout(() => { renderPedidos(); if (seccionActiva==='clientes') renderClientes(); }, 300);
+// ─── REGISTRAR AVISO ─────────────────────────────────────────
+async function registrarAviso(id) {
+  const fecha = new Date().toLocaleDateString('es-PE', { day:'2-digit', month:'short' });
+  const { error } = await sb.from('pedidos').update({ notificado: true, fecha_aviso: fecha }).eq('id', id);
+  if (error) { mostrarToast('❌ Error al guardar'); return; }
+  const idx = todosLosPedidos.findIndex(x => x.id === id);
+  if (idx >= 0) { todosLosPedidos[idx].notificado = true; todosLosPedidos[idx].fecha_aviso = fecha; }
+  renderPedidos();
+  if (seccionActiva === 'clientes') renderClientes();
   mostrarToast('✅ Aviso enviado por WhatsApp');
 }
 
-function mostrarToast(msg) {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.classList.remove('hidden');
-  setTimeout(() => t.classList.add('hidden'), 2500);
-}
-
-// ─── SUGERENCIAS AL ESCRIBIR NOMBRE ──────────────────────────
+// ─── SUGERENCIAS ─────────────────────────────────────────────
 function sugerirCliente(q) {
   const box = document.getElementById('sugerencias');
   if (!q || q.length < 2) { box.classList.add('hidden'); return; }
-  const datos = cargar();
-  const mapa  = {};
-  datos.forEach(p => {
+  const mapa = {};
+  todosLosPedidos.forEach(p => {
     const key = p.nombre.trim().toLowerCase() + '|' + p.celular;
     if (!mapa[key]) mapa[key] = { nombre: p.nombre, celular: p.celular };
   });
   const matches = Object.values(mapa).filter(c =>
     c.nombre.toLowerCase().includes(q.toLowerCase())).slice(0,4);
-  if (matches.length === 0) { box.classList.add('hidden'); return; }
+  if (!matches.length) { box.classList.add('hidden'); return; }
   box.innerHTML = matches.map(c => `
     <div onclick="elegirCliente('${c.nombre.replace(/'/g,"\\'")}','${c.celular}')"
       class="px-3 py-2 text-sm hover:bg-blue-50 cursor-pointer border-b border-slate-100 last:border-0">
@@ -511,17 +481,11 @@ document.addEventListener('click', e => {
     document.getElementById('sugerencias').classList.add('hidden');
 });
 
-// ─── FILTROS PEDIDOS ──────────────────────────────────────────
-function setFiltroP(tipo, valor) {
-  if (tipo === 'estado') {
-    filtroEstado = valor;
-    document.querySelectorAll('[id^="tab-estado-"]').forEach(b => b.classList.remove('tab-activo'));
-    document.getElementById('tab-estado-'+valor).classList.add('tab-activo');
-  } else {
-    filtroNotif = valor;
-    document.querySelectorAll('[id^="tab-notif-"]').forEach(b => b.classList.remove('tab-activo'));
-    document.getElementById('tab-notif-'+valor).classList.add('tab-activo');
-  }
+// ─── FILTROS ─────────────────────────────────────────────────
+function setFiltroP(valor) {
+  filtroNotif = valor;
+  document.querySelectorAll('[id^="tab-notif-"]').forEach(b => b.classList.remove('tab-activo'));
+  document.getElementById('tab-notif-'+valor).classList.add('tab-activo');
   renderPedidos();
 }
 
@@ -535,7 +499,7 @@ function abrirModalNuevo() {
   setTimeout(() => document.getElementById('f-codigo').focus(), 50);
 }
 function abrirModalEditar(id) {
-  const c = cargar().find(x => x.id === id);
+  const c = todosLosPedidos.find(x => x.id === id);
   if (!c) return;
   document.getElementById('modal-titulo').textContent = 'Editar pedido';
   document.getElementById('edit-id').value  = c.id;
@@ -548,44 +512,49 @@ function abrirModalEditar(id) {
 }
 function cerrarModal() { document.getElementById('modal').classList.add('hidden'); }
 
-function guardarPedido(e) {
+async function guardarPedido(e) {
   e.preventDefault();
-  const datos  = cargar();
-  const editId = document.getElementById('edit-id').value;
-  const nuevo  = {
-    id:         editId || Date.now().toString(),
+  const btn = document.getElementById('btn-guardar');
+  btn.disabled = true; btn.textContent = 'Guardando...';
+
+  const editId  = document.getElementById('edit-id').value;
+  const celular = document.getElementById('f-celular').value.trim().replace(/\D/g,'');
+  const payload = {
     codigo:     document.getElementById('f-codigo').value.trim().toUpperCase(),
     nombre:     document.getElementById('f-nombre').value.trim(),
-    celular:    document.getElementById('f-celular').value.trim().replace(/\D/g,''),
+    celular,
     nota:       document.getElementById('f-nota').value.trim(),
-    estado:     'pendiente',
-    notificado: false,
-    fechaAviso: null,
   };
+
+  let error;
   if (editId) {
-    const idx = datos.findIndex(x => x.id === editId);
-    nuevo.estado     = datos[idx].estado;
-    nuevo.notificado = datos[idx].notificado;
-    nuevo.fechaAviso = datos[idx].fechaAviso;
-    datos[idx] = nuevo;
+    ({ error } = await sb.from('pedidos').update(payload).eq('id', editId));
   } else {
-    datos.push(nuevo);
+    payload.id = Date.now().toString();
+    payload.notificado = false;
+    payload.fecha_aviso = null;
+    ({ error } = await sb.from('pedidos').insert(payload));
   }
-  guardar(datos);
+
+  btn.disabled = false; btn.textContent = 'Guardar';
+  if (error) { mostrarToast('❌ Error al guardar'); console.error(error); return; }
+
+  await cargarDatos();
   cerrarModal();
   renderPedidos();
+  mostrarToast(editId ? '✏️ Pedido actualizado' : '✅ Pedido guardado');
 }
 
 // ─── DETALLE PEDIDO ───────────────────────────────────────────
 function abrirDetalle(id) {
-  const c = cargar().find(x => x.id === id);
+  const c = todosLosPedidos.find(x => x.id === id);
   if (!c) return;
 
   const notifInfo = c.notificado
     ? `<div class="flex items-center gap-2 bg-green-50 border border-green-100 rounded-lg px-3 py-2">
          <span class="text-green-600 text-lg">📨</span>
          <div><p class="text-sm font-semibold text-green-700">Ya fue avisado</p>
-         ${c.fechaAviso?`<p class="text-xs text-green-500">el ${c.fechaAviso}</p>`:''}</div>
+         ${c.fecha_aviso?`<p class="text-xs text-green-500">el ${c.fecha_aviso}</p>`:''}</div>
        </div>`
     : `<div class="flex items-center gap-2 bg-orange-50 border border-orange-100 rounded-lg px-3 py-2">
          <span class="text-orange-500 text-lg">📵</span>
@@ -599,14 +568,14 @@ function abrirDetalle(id) {
           class="wa-btn wa-btn-nuevo flex-1 py-2.5 text-sm rounded-lg">${WA_SVG} Avisar recojo por WhatsApp</a>`;
 
   document.getElementById('detalle-contenido').innerHTML = `
-    <div class="flex items-center justify-between flex-wrap gap-2">
+    <div class="flex items-center gap-2 flex-wrap">
       <span class="font-mono text-2xl font-bold text-blue-600">${c.codigo}</span>
     </div>
     ${notifInfo}
     <div class="space-y-2 text-sm">
       <div><span class="text-slate-400">Cliente:</span> <span class="font-semibold text-slate-800">${c.nombre}</span></div>
       <div><span class="text-slate-400">Celular:</span> <span class="text-slate-800">+51 ${c.celular}</span></div>
-      <div><span class="text-slate-400">Ingreso:</span> <span class="text-slate-700">📅 ${fechaCorta(c.id)}</span></div>
+      <div><span class="text-slate-400">Ingreso:</span> <span class="text-slate-700">📅 ${fechaCorta(c.created_at)}</span></div>
       ${c.nota?`<div><span class="text-slate-400">Nota:</span> <span class="text-slate-700">${c.nota}</span></div>`:''}
     </div>
     <div class="flex gap-2">${btnWA}</div>
@@ -620,36 +589,36 @@ function abrirDetalle(id) {
 }
 function cerrarDetalle() { document.getElementById('modal-detalle').classList.add('hidden'); }
 
-function cambiarEstado(id, estado) {
-  const datos = cargar();
-  const idx   = datos.findIndex(x => x.id === id);
-  datos[idx].estado = estado;
-  guardar(datos);
-  cerrarDetalle();
-  renderPedidos();
-  setTimeout(() => abrirDetalle(id), 50);
-}
-function eliminarPedido(id) {
+async function eliminarPedido(id) {
   if (!confirm('¿Eliminar este pedido?')) return;
-  guardar(cargar().filter(x => x.id !== id));
+  const { error } = await sb.from('pedidos').delete().eq('id', id);
+  if (error) { mostrarToast('❌ Error al eliminar'); return; }
+  todosLosPedidos = todosLosPedidos.filter(x => x.id !== id);
   cerrarDetalle();
   renderPedidos();
+}
+
+// ─── TOAST ────────────────────────────────────────────────────
+function mostrarToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.remove('hidden');
+  setTimeout(() => t.classList.add('hidden'), 2500);
 }
 
 // ─── ESC / CLICK FUERA ────────────────────────────────────────
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') { cerrarModal(); cerrarDetalle(); cerrarModalCliente(); }
 });
-['modal','modal-detalle','modal-cliente'].forEach(id => {
-  document.getElementById(id).addEventListener('click', e => {
-    if (e.target.id === id) { cerrarModal(); cerrarDetalle(); cerrarModalCliente(); }
+['modal','modal-detalle','modal-cliente'].forEach(mid => {
+  document.getElementById(mid).addEventListener('click', e => {
+    if (e.target.id === mid) { cerrarModal(); cerrarDetalle(); cerrarModalCliente(); }
   });
 });
 
 // ─── INIT ─────────────────────────────────────────────────────
-setFiltroP('estado','todos');
-setFiltroP('notif','todos');
-renderPedidos();
+setFiltroP('todos');
+cargarDatos().then(() => renderPedidos());
 </script>
 </body>
 </html>

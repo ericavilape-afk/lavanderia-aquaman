@@ -100,7 +100,7 @@
     <p id="contador-cli" class="text-xs text-slate-400"></p>
   </div>
   <div id="lista-clientes" class="max-w-4xl mx-auto px-4 mt-2 pb-20 space-y-3"></div>
-  <div id="vacio-clientes" class="hidden max-w-4xl mx-aware px-4 mt-16 text-center text-slate-400">
+  <div id="vacio-clientes" class="hidden max-w-4xl mx-auto px-4 mt-16 text-center text-slate-400">
     <div class="text-5xl mb-3">👥</div>
     <p class="text-lg font-medium">Sin clientes aún</p>
     <p class="text-sm">Los clientes aparecen aquí automáticamente cuando creas pedidos</p>
@@ -206,6 +206,13 @@ async function cargarDatos() {
 }
 
 // ─── HELPERS ─────────────────────────────────────────────────
+function esc(s) {
+  return String(s ?? '').replace(/[&<>"']/g, ch =>
+    ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' })[ch]);
+}
+function inicial(nombre) {
+  return esc((nombre || '?').trim().charAt(0).toUpperCase() || '?');
+}
 function fechaCorta(ts) {
   if (!ts) return '';
   return new Date(ts).toLocaleDateString('es-PE', { day:'2-digit', month:'short', year:'numeric' });
@@ -287,12 +294,12 @@ function renderPedidos() {
     card.innerHTML = `
       <div class="flex-1 min-w-0">
         <div class="flex items-center gap-1.5 flex-wrap">
-          <span class="font-mono text-sm font-bold text-blue-600">${c.codigo}</span>
+          <span class="font-mono text-sm font-bold text-blue-600">${esc(c.codigo)}</span>
           ${notifBadge}
         </div>
-        <p class="font-semibold text-slate-800 mt-0.5 truncate">${c.nombre}</p>
+        <p class="font-semibold text-slate-800 mt-0.5 truncate">${esc(c.nombre)}</p>
         <p class="text-xs text-slate-400 mt-0.5">
-          📅 ${fechaCorta(c.created_at)}${c.nota?' · '+c.nota:''}${c.fecha_aviso?' · ✉️ avisado '+c.fecha_aviso:''}
+          📅 ${fechaCorta(c.created_at)}${c.nota?' · '+esc(c.nota):''}${c.fecha_aviso?' · ✉️ avisado '+esc(c.fecha_aviso):''}
         </p>
       </div>
       ${btnWA}`;
@@ -341,11 +348,11 @@ function renderClientes() {
     card.onclick = () => abrirModalCliente(c);
     card.innerHTML = `
       <div class="w-11 h-11 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold text-lg shrink-0">
-        ${c.nombre.trim()[0].toUpperCase()}
+        ${inicial(c.nombre)}
       </div>
       <div class="flex-1 min-w-0">
-        <p class="font-semibold text-slate-800 truncate">${c.nombre}</p>
-        <p class="text-xs text-slate-400">+51 ${c.celular} · último pedido: ${fechaCorta(ultimoPedido.created_at)}</p>
+        <p class="font-semibold text-slate-800 truncate">${esc(c.nombre)}</p>
+        <p class="text-xs text-slate-400">+51 ${esc(c.celular)} · último pedido: ${fechaCorta(ultimoPedido.created_at)}</p>
       </div>
       <div class="text-right shrink-0">
         <p class="text-lg font-bold text-blue-600">${total}</p>
@@ -380,11 +387,11 @@ function abrirModalCliente(c) {
   let html = `
     <div class="flex items-center gap-4 bg-blue-50 rounded-xl px-4 py-3">
       <div class="w-12 h-12 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-xl">
-        ${c.nombre.trim()[0].toUpperCase()}
+        ${inicial(c.nombre)}
       </div>
       <div>
-        <p class="font-semibold text-slate-800">${c.nombre}</p>
-        <p class="text-sm text-slate-500">+51 ${c.celular}</p>
+        <p class="font-semibold text-slate-800">${esc(c.nombre)}</p>
+        <p class="text-sm text-slate-500">+51 ${esc(c.celular)}</p>
       </div>
     </div>
     <div class="grid grid-cols-3 gap-3 text-center">
@@ -417,10 +424,10 @@ function abrirModalCliente(c) {
              onclick="cerrarModalCliente(); setTimeout(()=>abrirDetalle('${p.id}'),50)">
           <div class="flex-1 min-w-0">
             <div class="flex items-center gap-1.5 flex-wrap">
-              <span class="font-mono text-sm font-bold text-blue-600">${p.codigo}</span>
+              <span class="font-mono text-sm font-bold text-blue-600">${esc(p.codigo)}</span>
               ${notifBadge}
             </div>
-            <p class="text-xs text-slate-400 mt-0.5">📅 ${fechaCorta(p.created_at)}${p.nota?' · '+p.nota:''}</p>
+            <p class="text-xs text-slate-400 mt-0.5">📅 ${fechaCorta(p.created_at)}${p.nota?' · '+esc(p.nota):''}</p>
           </div>
           <a href="${urlWA(p)}" target="_blank" rel="noopener"
              onclick="event.stopPropagation(); registrarAviso('${p.id}')"
@@ -463,15 +470,19 @@ function sugerirCliente(q) {
   const matches = Object.values(mapa).filter(c =>
     c.nombre.toLowerCase().includes(q.toLowerCase())).slice(0,4);
   if (!matches.length) { box.classList.add('hidden'); return; }
-  box.innerHTML = matches.map(c => `
-    <div onclick="elegirCliente('${c.nombre.replace(/'/g,"\\'")}','${c.celular}')"
+  sugerenciasActuales = matches;
+  box.innerHTML = matches.map((c, i) => `
+    <div onclick="elegirCliente(${i})"
       class="px-3 py-2 text-sm hover:bg-blue-50 cursor-pointer border-b border-slate-100 last:border-0">
-      <span class="font-medium text-slate-800">${c.nombre}</span>
-      <span class="text-slate-400 text-xs ml-2">+51 ${c.celular}</span>
+      <span class="font-medium text-slate-800">${esc(c.nombre)}</span>
+      <span class="text-slate-400 text-xs ml-2">+51 ${esc(c.celular)}</span>
     </div>`).join('');
   box.classList.remove('hidden');
 }
-function elegirCliente(nombre, celular) {
+let sugerenciasActuales = [];
+function elegirCliente(i) {
+  const { nombre, celular } = sugerenciasActuales[i] || {};
+  if (!nombre) return;
   document.getElementById('f-nombre').value  = nombre;
   document.getElementById('f-celular').value = celular;
   document.getElementById('sugerencias').classList.add('hidden');
@@ -554,7 +565,7 @@ function abrirDetalle(id) {
     ? `<div class="flex items-center gap-2 bg-green-50 border border-green-100 rounded-lg px-3 py-2">
          <span class="text-green-600 text-lg">📨</span>
          <div><p class="text-sm font-semibold text-green-700">Ya fue avisado</p>
-         ${c.fecha_aviso?`<p class="text-xs text-green-500">el ${c.fecha_aviso}</p>`:''}</div>
+         ${c.fecha_aviso?`<p class="text-xs text-green-500">el ${esc(c.fecha_aviso)}</p>`:''}</div>
        </div>`
     : `<div class="flex items-center gap-2 bg-orange-50 border border-orange-100 rounded-lg px-3 py-2">
          <span class="text-orange-500 text-lg">📵</span>
@@ -569,14 +580,14 @@ function abrirDetalle(id) {
 
   document.getElementById('detalle-contenido').innerHTML = `
     <div class="flex items-center gap-2 flex-wrap">
-      <span class="font-mono text-2xl font-bold text-blue-600">${c.codigo}</span>
+      <span class="font-mono text-2xl font-bold text-blue-600">${esc(c.codigo)}</span>
     </div>
     ${notifInfo}
     <div class="space-y-2 text-sm">
-      <div><span class="text-slate-400">Cliente:</span> <span class="font-semibold text-slate-800">${c.nombre}</span></div>
-      <div><span class="text-slate-400">Celular:</span> <span class="text-slate-800">+51 ${c.celular}</span></div>
+      <div><span class="text-slate-400">Cliente:</span> <span class="font-semibold text-slate-800">${esc(c.nombre)}</span></div>
+      <div><span class="text-slate-400">Celular:</span> <span class="text-slate-800">+51 ${esc(c.celular)}</span></div>
       <div><span class="text-slate-400">Ingreso:</span> <span class="text-slate-700">📅 ${fechaCorta(c.created_at)}</span></div>
-      ${c.nota?`<div><span class="text-slate-400">Nota:</span> <span class="text-slate-700">${c.nota}</span></div>`:''}
+      ${c.nota?`<div><span class="text-slate-400">Nota:</span> <span class="text-slate-700">${esc(c.nota)}</span></div>`:''}
     </div>
     <div class="flex gap-2">${btnWA}</div>
     <div class="flex gap-2">

@@ -3,32 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#2563eb" />
   <title>CRM · Lavandería Aquaman</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-    * { font-family: 'Inter', sans-serif; }
-    .fade-in { animation: fadeIn .2s ease; }
-    @keyframes fadeIn { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:translateY(0); } }
-    .notif-si { background:#dcfce7; color:#15803d; border:1px solid #bbf7d0; }
-    .notif-no { background:#fef2f2; color:#dc2626; border:1px solid #fecaca; }
-    .wa-btn {
-      display:inline-flex; align-items:center; justify-content:center;
-      gap:6px; font-weight:600; font-size:.8rem;
-      padding:9px 14px; border-radius:8px;
-      text-decoration:none; transition:all .15s; white-space:nowrap;
-    }
-    .wa-btn-nuevo    { background:#22c55e; color:#fff; }
-    .wa-btn-nuevo:hover    { background:#16a34a; }
-    .wa-btn-reenviar { background:#f0fdf4; color:#16a34a; border:1.5px solid #86efac; }
-    .wa-btn-reenviar:hover { background:#dcfce7; }
-    .nav-tab { transition: all .15s; }
-    .nav-tab.activo { color:#2563eb; border-bottom:3px solid #2563eb; font-weight:600; }
-    .tab-activo { background:#2563eb !important; color:#fff !important; border-color:#2563eb !important; }
-  </style>
+  <link rel="preconnect" href="https://gdmgpfymwcfuryecccpy.supabase.co" crossorigin />
+  <link rel="dns-prefetch" href="https://gdmgpfymwcfuryecccpy.supabase.co" />
+  <style>*,:after,:before{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/*! tailwindcss v3.4.19 | MIT License | https://tailwindcss.com*/*,:after,:before{box-sizing:border-box;border:0 solid #e5e7eb}:after,:before{--tw-content:""}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;-o-tab-size:4;tab-size:4;font-family:ui-sans-serif,system-ui,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0}fieldset,legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::-moz-placeholder,textarea::-moz-placeholder{opacity:1;color:#9ca3af}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}html{-webkit-text-size-adjust:100%}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif}.fade-in{animation:fadeIn .2s ease}@keyframes fadeIn{0%{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}.notif-si{background:#dcfce7;color:#15803d;border:1px solid #bbf7d0}.notif-no{background:#fef2f2;color:#dc2626;border:1px solid #fecaca}.wa-btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;font-weight:600;font-size:.8rem;padding:9px 14px;border-radius:8px;text-decoration:none;transition:background-color .15s,color .15s,border-color .15s;white-space:nowrap}.wa-btn-nuevo{background:#22c55e;color:#fff}.wa-btn-nuevo:hover{background:#16a34a}.wa-btn-reenviar{background:#f0fdf4;color:#16a34a;border:1.5px solid #86efac}.wa-btn-reenviar:hover{background:#dcfce7}.nav-tab{transition:color .15s,border-color .15s}.nav-tab.activo{color:#fff;border-bottom:3px solid #fff;font-weight:600}.tab-activo{background:#2563eb!important;color:#fff!important;border-color:#2563eb!important}.wa-ico{width:15px;height:15px;flex-shrink:0}.spin{animation:spin 1s linear infinite}@keyframes spin{to{transform:rotate(1turn)}}.fixed{position:fixed}.absolute{position:absolute}.relative{position:relative}.inset-0{inset:0}.bottom-6{bottom:1.5rem}.left-1\/2{left:50%}.left-3{left:.75rem}.top-1\/2{top:50%}.z-40{z-index:40}.z-50{z-index:50}.mx-auto{margin-left:auto;margin-right:auto}.mb-1{margin-bottom:.25rem}.mb-2{margin-bottom:.5rem}.mb-3{margin-bottom:.75rem}.ml-2{margin-left:.5rem}.mt-0\.5{margin-top:.125rem}.mt-1{margin-top:.25rem}.mt-16{margin-top:4rem}.mt-2{margin-top:.5rem}.mt-4{margin-top:1rem}.mt-6{margin-top:1.5rem}.block{display:block}.flex{display:flex}.grid{display:grid}.hidden{display:none}.h-11{height:2.75rem}.h-12{height:3rem}.max-h-\[90vh\]{max-height:90vh}.min-h-screen{min-height:100vh}.w-11{width:2.75rem}.w-12{width:3rem}.w-full{width:100%}.min-w-0{min-width:0}.max-w-4xl{max-width:56rem}.max-w-lg{max-width:32rem}.max-w-md{max-width:28rem}.flex-1{flex:1 1 0%}.shrink-0{flex-shrink:0}.-translate-x-1\/2{--tw-translate-x:-50%}.-translate-x-1\/2,.-translate-y-1\/2{transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.-translate-y-1\/2{--tw-translate-y:-50%}.cursor-pointer{cursor:pointer}.grid-cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-center{align-items:center}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-0{gap:0}.gap-1\.5{gap:.375rem}.gap-2{gap:.5rem}.gap-3{gap:.75rem}.gap-4{gap:1rem}.space-y-2>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(.5rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(.5rem*var(--tw-space-y-reverse))}.space-y-3>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(.75rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(.75rem*var(--tw-space-y-reverse))}.space-y-4>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1rem*var(--tw-space-y-reverse))}.overflow-hidden{overflow:hidden}.overflow-y-auto{overflow-y:auto}.truncate{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.rounded-2xl{border-radius:1rem}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:.5rem}.rounded-xl{border-radius:.75rem}.border{border-width:1px}.border-b{border-bottom-width:1px}.border-t{border-top-width:1px}.border-blue-500{--tw-border-opacity:1;border-color:rgb(59 130 246/var(--tw-border-opacity,1))}.border-green-100{--tw-border-opacity:1;border-color:rgb(220 252 231/var(--tw-border-opacity,1))}.border-orange-100{--tw-border-opacity:1;border-color:rgb(255 237 213/var(--tw-border-opacity,1))}.border-red-100{--tw-border-opacity:1;border-color:rgb(254 226 226/var(--tw-border-opacity,1))}.border-slate-100{--tw-border-opacity:1;border-color:rgb(241 245 249/var(--tw-border-opacity,1))}.border-slate-200{--tw-border-opacity:1;border-color:rgb(226 232 240/var(--tw-border-opacity,1))}.bg-black\/40{background-color:rgba(0,0,0,.4)}.bg-blue-100{--tw-bg-opacity:1;background-color:rgb(219 234 254/var(--tw-bg-opacity,1))}.bg-blue-50{--tw-bg-opacity:1;background-color:rgb(239 246 255/var(--tw-bg-opacity,1))}.bg-blue-600{--tw-bg-opacity:1;background-color:rgb(37 99 235/var(--tw-bg-opacity,1))}.bg-green-50{--tw-bg-opacity:1;background-color:rgb(240 253 244/var(--tw-bg-opacity,1))}.bg-orange-50{--tw-bg-opacity:1;background-color:rgb(255 247 237/var(--tw-bg-opacity,1))}.bg-slate-50{--tw-bg-opacity:1;background-color:rgb(248 250 252/var(--tw-bg-opacity,1))}.bg-slate-800{--tw-bg-opacity:1;background-color:rgb(30 41 59/var(--tw-bg-opacity,1))}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255/var(--tw-bg-opacity,1))}.bg-white\/70{background-color:hsla(0,0%,100%,.7)}.p-4{padding:1rem}.px-2{padding-left:.5rem;padding-right:.5rem}.px-3{padding-left:.75rem;padding-right:.75rem}.px-4{padding-left:1rem;padding-right:1rem}.px-5{padding-left:1.25rem;padding-right:1.25rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.py-0\.5{padding-top:.125rem;padding-bottom:.125rem}.py-1\.5{padding-top:.375rem;padding-bottom:.375rem}.py-2{padding-top:.5rem;padding-bottom:.5rem}.py-2\.5{padding-top:.625rem;padding-bottom:.625rem}.py-3{padding-top:.75rem;padding-bottom:.75rem}.py-4{padding-top:1rem;padding-bottom:1rem}.py-5{padding-top:1.25rem;padding-bottom:1.25rem}.pb-20{padding-bottom:5rem}.pb-3{padding-bottom:.75rem}.pl-10{padding-left:2.5rem}.pr-4{padding-right:1rem}.pt-1{padding-top:.25rem}.pt-5{padding-top:1.25rem}.text-center{text-align:center}.text-right{text-align:right}.font-mono{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace}.text-2xl{font-size:1.5rem;line-height:2rem}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-4xl{font-size:2.25rem;line-height:2.5rem}.text-5xl{font-size:3rem;line-height:1}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.text-xs{font-size:.75rem;line-height:1rem}.font-bold{font-weight:700}.font-medium{font-weight:500}.font-semibold{font-weight:600}.uppercase{text-transform:uppercase}.capitalize{text-transform:capitalize}.leading-tight{line-height:1.25}.tracking-wide{letter-spacing:.025em}.text-blue-200{--tw-text-opacity:1;color:rgb(191 219 254/var(--tw-text-opacity,1))}.text-blue-600{--tw-text-opacity:1;color:rgb(37 99 235/var(--tw-text-opacity,1))}.text-green-500{--tw-text-opacity:1;color:rgb(34 197 94/var(--tw-text-opacity,1))}.text-green-600{--tw-text-opacity:1;color:rgb(22 163 74/var(--tw-text-opacity,1))}.text-green-700{--tw-text-opacity:1;color:rgb(21 128 61/var(--tw-text-opacity,1))}.text-orange-500{--tw-text-opacity:1;color:rgb(249 115 22/var(--tw-text-opacity,1))}.text-orange-600{--tw-text-opacity:1;color:rgb(234 88 12/var(--tw-text-opacity,1))}.text-red-500{--tw-text-opacity:1;color:rgb(239 68 68/var(--tw-text-opacity,1))}.text-slate-400{--tw-text-opacity:1;color:rgb(148 163 184/var(--tw-text-opacity,1))}.text-slate-500{--tw-text-opacity:1;color:rgb(100 116 139/var(--tw-text-opacity,1))}.text-slate-600{--tw-text-opacity:1;color:rgb(71 85 105/var(--tw-text-opacity,1))}.text-slate-700{--tw-text-opacity:1;color:rgb(51 65 85/var(--tw-text-opacity,1))}.text-slate-800{--tw-text-opacity:1;color:rgb(30 41 59/var(--tw-text-opacity,1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255/var(--tw-text-opacity,1))}.shadow-lg{--tw-shadow:0 10px 15px -3px rgba(0,0,0,.1),0 4px 6px -4px rgba(0,0,0,.1);--tw-shadow-colored:0 10px 15px -3px var(--tw-shadow-color),0 4px 6px -4px var(--tw-shadow-color)}.shadow-lg,.shadow-md{box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)}.shadow-md{--tw-shadow:0 4px 6px -1px rgba(0,0,0,.1),0 2px 4px -2px rgba(0,0,0,.1);--tw-shadow-colored:0 4px 6px -1px var(--tw-shadow-color),0 2px 4px -2px var(--tw-shadow-color)}.shadow-sm{--tw-shadow:0 1px 2px 0 rgba(0,0,0,.05);--tw-shadow-colored:0 1px 2px 0 var(--tw-shadow-color)}.shadow-sm,.shadow-xl{box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)}.shadow-xl{--tw-shadow:0 20px 25px -5px rgba(0,0,0,.1),0 8px 10px -6px rgba(0,0,0,.1);--tw-shadow-colored:0 20px 25px -5px var(--tw-shadow-color),0 8px 10px -6px var(--tw-shadow-color)}.filter{filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.transition{transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,-webkit-backdrop-filter;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter,-webkit-backdrop-filter;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.last\:border-0:last-child{border-width:0}.hover\:bg-blue-50:hover{--tw-bg-opacity:1;background-color:rgb(239 246 255/var(--tw-bg-opacity,1))}.hover\:bg-blue-700:hover{--tw-bg-opacity:1;background-color:rgb(29 78 216/var(--tw-bg-opacity,1))}.hover\:bg-red-50:hover{--tw-bg-opacity:1;background-color:rgb(254 242 242/var(--tw-bg-opacity,1))}.hover\:bg-slate-100:hover{--tw-bg-opacity:1;background-color:rgb(241 245 249/var(--tw-bg-opacity,1))}.hover\:bg-slate-50:hover{--tw-bg-opacity:1;background-color:rgb(248 250 252/var(--tw-bg-opacity,1))}.hover\:text-slate-600:hover{--tw-text-opacity:1;color:rgb(71 85 105/var(--tw-text-opacity,1))}.hover\:shadow-md:hover{--tw-shadow:0 4px 6px -1px rgba(0,0,0,.1),0 2px 4px -2px rgba(0,0,0,.1);--tw-shadow-colored:0 4px 6px -1px var(--tw-shadow-color),0 2px 4px -2px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)}.focus\:outline-none:focus{outline:2px solid transparent;outline-offset:2px}.focus\:ring-2:focus{--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow),var(--tw-ring-shadow),var(--tw-shadow,0 0 #0000)}.focus\:ring-blue-400:focus{--tw-ring-opacity:1;--tw-ring-color:rgb(96 165 250/var(--tw-ring-opacity,1))}@media(max-width:560px){.search-row{flex-direction:column}.search-row select{padding-top:.75rem;padding-bottom:.75rem}}</style>
 </head>
 <body class="bg-slate-50 min-h-screen">
+
+<svg aria-hidden="true" width="0" height="0" class="absolute overflow-hidden">
+  <symbol id="ico-wa" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+    <path fill="currentColor" d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.532 5.859L0 24l6.303-1.504A11.947 11.947 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.366l-.358-.214-3.742.893.938-3.641-.234-.373A9.818 9.818 0 0112 2.182c5.425 0 9.818 4.393 9.818 9.818 0 5.426-4.393 9.818-9.818 9.818z"/>
+  </symbol>
+</svg>
 
 <!-- HEADER -->
 <header class="bg-blue-600 text-white shadow-md">
@@ -40,29 +28,28 @@
         <p class="text-blue-200 text-xs">Sistema de recojo</p>
       </div>
     </div>
-    <button id="btn-nuevo" onclick="abrirModalNuevo()"
+    <button id="btn-nuevo" type="button"
       class="bg-white text-blue-600 font-semibold px-4 py-2 rounded-lg text-sm hover:bg-blue-50 transition">
       + Nuevo pedido
     </button>
   </div>
   <div class="max-w-4xl mx-auto px-4 flex gap-0 border-t border-blue-500">
-    <button onclick="irSeccion('pedidos')" id="nav-pedidos"
+    <button type="button" id="nav-pedidos"
       class="nav-tab activo px-6 py-3 text-sm text-white">📋 Pedidos</button>
-    <button onclick="irSeccion('clientes')" id="nav-clientes"
+    <button type="button" id="nav-clientes"
       class="nav-tab px-6 py-3 text-sm text-blue-200">👥 Clientes</button>
   </div>
 </header>
 
 <!-- ══ SECCIÓN PEDIDOS ══ -->
 <div id="sec-pedidos">
-  <div class="max-w-4xl mx-auto px-4 mt-6 flex gap-2">
+  <div class="search-row max-w-4xl mx-auto px-4 mt-6 flex gap-2">
     <div class="relative flex-1">
       <span class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">🔍</span>
-      <input id="buscador" type="text" placeholder="Buscar por código de boleta o nombre..."
-        class="w-full pl-10 pr-4 py-3 rounded-xl border border-slate-200 bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 text-sm"
-        oninput="renderPedidos()" />
+      <input id="buscador" type="search" placeholder="Buscar por código de boleta o nombre..."
+        class="w-full pl-10 pr-4 py-3 rounded-xl border border-slate-200 bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 text-sm" />
     </div>
-    <select id="orden" onchange="renderPedidos()"
+    <select id="orden"
       class="border border-slate-200 bg-white rounded-xl px-3 text-sm text-slate-600 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400">
       <option value="desc">Más reciente</option>
       <option value="asc">Más antiguo</option>
@@ -70,9 +57,9 @@
   </div>
   <div class="max-w-4xl mx-auto px-4 mt-4">
     <div class="flex gap-2 flex-wrap">
-      <button onclick="setFiltroP('todos')" id="tab-notif-todos" class="tab-btn px-4 py-1.5 rounded-full text-xs font-medium border transition">Todos</button>
-      <button onclick="setFiltroP('no')"    id="tab-notif-no"   class="tab-btn px-4 py-1.5 rounded-full text-xs font-medium border transition">📵 Sin avisar</button>
-      <button onclick="setFiltroP('si')"    id="tab-notif-si"   class="tab-btn px-4 py-1.5 rounded-full text-xs font-medium border transition">📨 Ya avisados</button>
+      <button type="button" data-filtro="todos" id="tab-notif-todos" class="tab-btn px-4 py-1.5 rounded-full text-xs font-medium border transition">Todos</button>
+      <button type="button" data-filtro="no"    id="tab-notif-no"   class="tab-btn px-4 py-1.5 rounded-full text-xs font-medium border transition">📵 Sin avisar</button>
+      <button type="button" data-filtro="si"    id="tab-notif-si"   class="tab-btn px-4 py-1.5 rounded-full text-xs font-medium border transition">📨 Ya avisados</button>
     </div>
   </div>
   <div class="max-w-4xl mx-auto px-4 mt-2">
@@ -91,9 +78,8 @@
   <div class="max-w-4xl mx-auto px-4 mt-6">
     <div class="relative">
       <span class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">🔍</span>
-      <input id="buscador-cli" type="text" placeholder="Buscar cliente por nombre o celular..."
-        class="w-full pl-10 pr-4 py-3 rounded-xl border border-slate-200 bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 text-sm"
-        oninput="renderClientes()" />
+      <input id="buscador-cli" type="search" placeholder="Buscar cliente por nombre o celular..."
+        class="w-full pl-10 pr-4 py-3 rounded-xl border border-slate-200 bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 text-sm" />
     </div>
   </div>
   <div class="max-w-4xl mx-auto px-4 mt-2">
@@ -112,7 +98,7 @@
   <div class="bg-white rounded-2xl shadow-xl w-full max-w-lg fade-in max-h-[90vh] flex flex-col">
     <div class="flex items-center justify-between px-6 pt-5 pb-3 border-b shrink-0">
       <h2 id="cli-titulo" class="text-lg font-semibold text-slate-800"></h2>
-      <button onclick="cerrarModalCliente()" class="text-slate-400 hover:text-slate-600 text-xl">&times;</button>
+      <button type="button" data-close="cliente" class="text-slate-400 hover:text-slate-600 text-xl">&times;</button>
     </div>
     <div id="cli-contenido" class="overflow-y-auto px-6 py-5 space-y-4"></div>
   </div>
@@ -123,9 +109,9 @@
   <div class="bg-white rounded-2xl shadow-xl w-full max-w-md fade-in">
     <div class="flex items-center justify-between px-6 pt-5 pb-3 border-b">
       <h2 id="modal-titulo" class="text-lg font-semibold text-slate-800">Nuevo pedido</h2>
-      <button onclick="cerrarModal()" class="text-slate-400 hover:text-slate-600 text-xl">&times;</button>
+      <button type="button" data-close="pedido" class="text-slate-400 hover:text-slate-600 text-xl">&times;</button>
     </div>
-    <form id="form-cliente" class="px-6 py-5 space-y-4" onsubmit="guardarPedido(event)">
+    <form id="form-cliente" class="px-6 py-5 space-y-4">
       <input type="hidden" id="edit-id" />
       <div>
         <label class="block text-sm font-medium text-slate-700 mb-1">Código de boleta *</label>
@@ -136,7 +122,7 @@
         <label class="block text-sm font-medium text-slate-700 mb-1">Nombre del cliente *</label>
         <input id="f-nombre" type="text" required placeholder="Ej: María García"
           class="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
-          oninput="sugerirCliente(this.value)" autocomplete="off" />
+          autocomplete="off" />
         <div id="sugerencias" class="hidden border border-slate-200 rounded-lg mt-1 bg-white shadow-md overflow-hidden"></div>
       </div>
       <div>
@@ -154,7 +140,7 @@
           class="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400" />
       </div>
       <div class="flex gap-3 pt-1">
-        <button type="button" onclick="cerrarModal()"
+        <button type="button" data-close="pedido"
           class="flex-1 border border-slate-200 text-slate-600 rounded-lg py-2 text-sm font-medium hover:bg-slate-50">Cancelar</button>
         <button type="submit" id="btn-guardar"
           class="flex-1 bg-blue-600 text-white rounded-lg py-2 text-sm font-semibold hover:bg-blue-700">Guardar</button>
@@ -168,7 +154,7 @@
   <div class="bg-white rounded-2xl shadow-xl w-full max-w-md fade-in">
     <div class="flex items-center justify-between px-6 pt-5 pb-3 border-b">
       <h2 class="text-lg font-semibold text-slate-800">Detalle del pedido</h2>
-      <button onclick="cerrarDetalle()" class="text-slate-400 hover:text-slate-600 text-xl">&times;</button>
+      <button type="button" data-close="detalle" class="text-slate-400 hover:text-slate-600 text-xl">&times;</button>
     </div>
     <div id="detalle-contenido" class="px-6 py-5 space-y-4"></div>
   </div>
@@ -176,33 +162,89 @@
 
 <!-- LOADING -->
 <div id="loading" class="hidden fixed inset-0 bg-white/70 z-40 flex items-center justify-center">
-  <div class="text-blue-600 text-4xl animate-spin">⏳</div>
+  <div class="text-blue-600 text-4xl spin">⏳</div>
 </div>
 
 <!-- TOAST -->
 <div id="toast" class="hidden fixed bottom-6 left-1/2 -translate-x-1/2 bg-slate-800 text-white text-sm px-5 py-3 rounded-xl shadow-lg z-50"></div>
 
+
 <script>
-// ─── SUPABASE ────────────────────────────────────────────────
+// ─── SUPABASE REST (sin SDK) ─────────────────────────────────
 const SUPA_URL = 'https://gdmgpfymwcfuryecccpy.supabase.co';
 const SUPA_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdkbWdwZnltd2NmdXJ5ZWNjY3B5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk5ODMyNzQsImV4cCI6MjA5NTU1OTI3NH0.RFxMrMMcN12rTRk5QO281F5X1MP3A48dOUhhd0pXi84';
-const sb = supabase.createClient(SUPA_URL, SUPA_KEY);
+const SB_HEADERS = {
+  apikey: SUPA_KEY,
+  Authorization: 'Bearer ' + SUPA_KEY,
+  'Content-Type': 'application/json',
+  Accept: 'application/json',
+  Prefer: 'return=representation'
+};
+const CACHE_KEY = 'aq-pedidos-v1';
+const PAGE = 40;
+const WA_ICO = '<svg class="wa-ico"><use href="#ico-wa"/></svg>';
 
 let todosLosPedidos = [];
+let cacheClientes = null;
 let filtroNotif = 'todos';
 let seccionActiva = 'pedidos';
+let paginaP = PAGE;
+let paginaC = PAGE;
+let sugerenciasActuales = [];
+
+async function sb(method, path, body) {
+  const res = await fetch(SUPA_URL + '/rest/v1/' + path, {
+    method,
+    headers: SB_HEADERS,
+    body: body !== undefined ? JSON.stringify(body) : undefined
+  });
+  if (!res.ok) throw new Error((await res.text()) || String(res.status));
+  const t = await res.text();
+  return t ? JSON.parse(t) : null;
+}
+
+// ─── CACHE ───────────────────────────────────────────────────
+function leerCache() {
+  try {
+    const raw = localStorage.getItem(CACHE_KEY);
+    if (!raw) return null;
+    const arr = JSON.parse(raw);
+    return Array.isArray(arr) ? arr : null;
+  } catch { return null; }
+}
+let cacheTimer;
+function guardarCache() {
+  clearTimeout(cacheTimer);
+  cacheTimer = setTimeout(() => {
+    try { localStorage.setItem(CACHE_KEY, JSON.stringify(todosLosPedidos)); } catch {}
+  }, 150);
+}
+function setPedidos(arr) {
+  todosLosPedidos = arr;
+  for (let i = 0; i < todosLosPedidos.length; i++) {
+    const p = todosLosPedidos[i];
+    p._t = p.created_at ? Date.parse(p.created_at) || 0 : 0;
+  }
+  cacheClientes = null;
+}
 
 // ─── LOADING ─────────────────────────────────────────────────
 function showLoad() { document.getElementById('loading').classList.remove('hidden'); }
 function hideLoad() { document.getElementById('loading').classList.add('hidden'); }
 
 // ─── CARGAR DATOS ────────────────────────────────────────────
-async function cargarDatos() {
-  showLoad();
-  const { data, error } = await sb.from('pedidos').select('*').order('created_at', { ascending: false });
-  hideLoad();
-  if (error) { mostrarToast('❌ Error al cargar datos'); console.error(error); return; }
-  todosLosPedidos = data || [];
+async function cargarDatos(silencio) {
+  if (!silencio) showLoad();
+  try {
+    const data = await sb('GET', 'pedidos?select=*&order=created_at.desc');
+    setPedidos(data || []);
+    guardarCache();
+  } catch (error) {
+    mostrarToast('❌ Error al cargar datos');
+    console.error(error);
+  } finally {
+    hideLoad();
+  }
 }
 
 // ─── HELPERS ─────────────────────────────────────────────────
@@ -222,15 +264,43 @@ function fechaMes(ts) {
   return new Date(ts).toLocaleDateString('es-PE', { month:'long', year:'numeric' });
 }
 function urlWA(c) {
-  const tel = '51' + c.celular.replace(/\D/g,'');
+  const tel = '51' + String(c.celular).replace(/\D/g,'');
   const msg = `Hola ${c.nombre} 👋, te avisamos que tu ropa de la *Lavandería Aquaman* ya está lavada, doblada y perfumada lista para recoger.🤩\n\n📋 Boleta: *${c.codigo}*\n\n¡Te esperamos! 🌊`;
   return `https://api.whatsapp.com/send?phone=${tel}&text=${encodeURIComponent(msg)}`;
 }
+function claveCliente(c) {
+  return c.nombre.trim().toLowerCase() + '|' + String(c.celular).replace(/\D/g,'');
+}
+function debounce(fn, ms) {
+  let t;
+  return function () {
+    clearTimeout(t);
+    t = setTimeout(fn, ms);
+  };
+}
+function badgeNotif(ok) {
+  return ok
+    ? '<span class="notif-si text-xs font-semibold px-2 py-0.5 rounded-full">📨 Avisado</span>'
+    : '<span class="notif-no text-xs font-semibold px-2 py-0.5 rounded-full">📵 Sin avisar</span>';
+}
 
-const WA_SVG = `<svg style="width:15px;height:15px;flex-shrink:0" viewBox="0 0 24 24" fill="currentColor">
-  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
-  <path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.532 5.859L0 24l6.303-1.504A11.947 11.947 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.366l-.358-.214-3.742.893.938-3.641-.234-.373A9.818 9.818 0 0112 2.182c5.425 0 9.818 4.393 9.818 9.818 0 5.426-4.393 9.818-9.818 9.818z"/>
-</svg>`;
+function listaClientes() {
+  if (cacheClientes) return cacheClientes;
+  const mapa = Object.create(null);
+  for (let i = 0; i < todosLosPedidos.length; i++) {
+    const p = todosLosPedidos[i];
+    const key = claveCliente(p);
+    let c = mapa[key];
+    if (!c) {
+      c = mapa[key] = { nombre: p.nombre, celular: p.celular, pedidos: [], _t: 0 };
+    }
+    c.pedidos.push(p);
+    if (p._t > c._t) c._t = p._t;
+  }
+  cacheClientes = Object.values(mapa);
+  cacheClientes.sort((a, b) => b._t - a._t);
+  return cacheClientes;
+}
 
 // ─── NAVEGACIÓN ───────────────────────────────────────────────
 function irSeccion(sec) {
@@ -249,120 +319,107 @@ function irSeccion(sec) {
 }
 
 // ─── RENDER PEDIDOS ───────────────────────────────────────────
+function filtrarPedidos() {
+  const q = document.getElementById('buscador').value.toLowerCase().trim();
+  const orden = document.getElementById('orden').value;
+  let datos = todosLosPedidos;
+  if (filtroNotif === 'si') datos = datos.filter(c => c.notificado);
+  else if (filtroNotif === 'no') datos = datos.filter(c => !c.notificado);
+  if (q) {
+    datos = datos.filter(c =>
+      String(c.codigo).toLowerCase().includes(q) || String(c.nombre).toLowerCase().includes(q));
+  }
+  const copia = datos.slice();
+  copia.sort((a, b) => orden === 'desc' ? b._t - a._t : a._t - b._t);
+  return copia;
+}
+
+function cardPedido(c) {
+  const id = esc(c.id);
+  return `<div class="card-row bg-white rounded-xl border shadow-sm px-5 py-4 flex items-center gap-3 fade-in cursor-pointer hover:shadow-md transition ${c.notificado ? 'border-slate-100' : 'border-orange-100'}" data-id="${id}">
+    <div class="flex-1 min-w-0">
+      <div class="flex items-center gap-1.5 flex-wrap">
+        <span class="font-mono text-sm font-bold text-blue-600">${esc(c.codigo)}</span>
+        ${badgeNotif(c.notificado)}
+      </div>
+      <p class="font-semibold text-slate-800 mt-0.5 truncate">${esc(c.nombre)}</p>
+      <p class="text-xs text-slate-400 mt-0.5">📅 ${fechaCorta(c.created_at)}${c.nota ? ' · ' + esc(c.nota) : ''}${c.fecha_aviso ? ' · ✉️ avisado ' + esc(c.fecha_aviso) : ''}</p>
+    </div>
+    <a href="${urlWA(c)}" target="_blank" rel="noopener" data-aviso="${id}"
+      class="wa-btn ${c.notificado ? 'wa-btn-reenviar' : 'wa-btn-nuevo'} shrink-0">${WA_ICO} ${c.notificado ? 'Reenviar' : 'Avisar recojo'}</a>
+  </div>`;
+}
+
 function renderPedidos() {
   const lista = document.getElementById('lista-pedidos');
   const vacio = document.getElementById('vacio-pedidos');
-  const q     = document.getElementById('buscador').value.toLowerCase().trim();
-  const orden = document.getElementById('orden').value;
-  let datos   = [...todosLosPedidos];
-
-  if (filtroNotif === 'si') datos = datos.filter(c => c.notificado);
-  if (filtroNotif === 'no') datos = datos.filter(c => !c.notificado);
-  if (q) datos = datos.filter(c =>
-    c.codigo.toLowerCase().includes(q) || c.nombre.toLowerCase().includes(q));
-
-  datos.sort((a,b) => orden === 'desc'
-    ? new Date(b.created_at) - new Date(a.created_at)
-    : new Date(a.created_at) - new Date(b.created_at));
-
-  const sinAvisar = todosLosPedidos.filter(c => !c.notificado).length;
+  const datos = filtrarPedidos();
+  let sinAvisar = 0;
+  for (let i = 0; i < todosLosPedidos.length; i++) if (!todosLosPedidos[i].notificado) sinAvisar++;
   document.getElementById('contador').textContent =
-    `${datos.length} pedido${datos.length!==1?'s':''} · ${sinAvisar} sin avisar`;
+    `${datos.length} pedido${datos.length !== 1 ? 's' : ''} · ${sinAvisar} sin avisar`;
 
-  lista.innerHTML = '';
-  if (datos.length === 0) { vacio.classList.remove('hidden'); return; }
+  if (datos.length === 0) {
+    lista.innerHTML = '';
+    vacio.classList.remove('hidden');
+    return;
+  }
   vacio.classList.add('hidden');
-
-  datos.forEach(c => {
-    const card = document.createElement('div');
-    card.className = 'bg-white rounded-xl border shadow-sm px-5 py-4 flex items-center gap-3 fade-in cursor-pointer hover:shadow-md transition ' +
-      (c.notificado ? 'border-slate-100' : 'border-orange-100');
-    card.onclick = () => abrirDetalle(c.id);
-
-    const notifBadge = c.notificado
-      ? `<span class="notif-si text-xs font-semibold px-2 py-0.5 rounded-full">📨 Avisado</span>`
-      : `<span class="notif-no text-xs font-semibold px-2 py-0.5 rounded-full">📵 Sin avisar</span>`;
-
-    const btnWA = c.notificado
-      ? `<a href="${urlWA(c)}" target="_blank" rel="noopener"
-            onclick="event.stopPropagation(); registrarAviso('${c.id}')"
-            class="wa-btn wa-btn-reenviar shrink-0">${WA_SVG} Reenviar</a>`
-      : `<a href="${urlWA(c)}" target="_blank" rel="noopener"
-            onclick="event.stopPropagation(); registrarAviso('${c.id}')"
-            class="wa-btn wa-btn-nuevo shrink-0">${WA_SVG} Avisar recojo</a>`;
-
-    card.innerHTML = `
-      <div class="flex-1 min-w-0">
-        <div class="flex items-center gap-1.5 flex-wrap">
-          <span class="font-mono text-sm font-bold text-blue-600">${esc(c.codigo)}</span>
-          ${notifBadge}
-        </div>
-        <p class="font-semibold text-slate-800 mt-0.5 truncate">${esc(c.nombre)}</p>
-        <p class="text-xs text-slate-400 mt-0.5">
-          📅 ${fechaCorta(c.created_at)}${c.nota?' · '+esc(c.nota):''}${c.fecha_aviso?' · ✉️ avisado '+esc(c.fecha_aviso):''}
-        </p>
-      </div>
-      ${btnWA}`;
-    lista.appendChild(card);
-  });
+  const slice = datos.slice(0, paginaP);
+  let html = '';
+  for (let i = 0; i < slice.length; i++) html += cardPedido(slice[i]);
+  if (datos.length > slice.length) {
+    html += `<button type="button" id="btn-mas-p" class="w-full py-3 text-sm font-medium text-blue-600 bg-white border border-slate-200 rounded-xl hover:bg-blue-50">Cargar más (${datos.length - slice.length} restantes)</button>`;
+  }
+  lista.innerHTML = html;
 }
 
 // ─── RENDER CLIENTES ─────────────────────────────────────────
 function renderClientes() {
   const lista = document.getElementById('lista-clientes');
   const vacio = document.getElementById('vacio-clientes');
-  const q     = document.getElementById('buscador-cli').value.toLowerCase().trim();
-
-  const mapa = {};
-  todosLosPedidos.forEach(p => {
-    const key = p.nombre.trim().toLowerCase() + '|' + p.celular.replace(/\D/g,'');
-    if (!mapa[key]) mapa[key] = { nombre: p.nombre, celular: p.celular, pedidos: [] };
-    mapa[key].pedidos.push(p);
-  });
-
-  let clientes = Object.values(mapa);
-  if (q) clientes = clientes.filter(c =>
-    c.nombre.toLowerCase().includes(q) || c.celular.includes(q));
-
-  clientes.sort((a,b) => {
-    const maxA = Math.max(...a.pedidos.map(p => new Date(p.created_at)));
-    const maxB = Math.max(...b.pedidos.map(p => new Date(p.created_at)));
-    return maxB - maxA;
-  });
+  const q = document.getElementById('buscador-cli').value.toLowerCase().trim();
+  let clientes = listaClientes();
+  if (q) {
+    clientes = clientes.filter(c =>
+      c.nombre.toLowerCase().includes(q) || String(c.celular).includes(q));
+  }
 
   document.getElementById('contador-cli').textContent =
-    `${clientes.length} cliente${clientes.length!==1?'s':''} · ${todosLosPedidos.length} pedidos en total`;
+    `${clientes.length} cliente${clientes.length !== 1 ? 's' : ''} · ${todosLosPedidos.length} pedidos en total`;
 
-  lista.innerHTML = '';
-  if (clientes.length === 0) { vacio.classList.remove('hidden'); return; }
+  if (clientes.length === 0) {
+    lista.innerHTML = '';
+    vacio.classList.remove('hidden');
+    return;
+  }
   vacio.classList.add('hidden');
-
-  clientes.forEach(c => {
-    const total      = c.pedidos.length;
-    const sinAvisar  = c.pedidos.filter(p => !p.notificado).length;
-    const ultimoPedido = c.pedidos.reduce((a,b) =>
-      new Date(a.created_at) > new Date(b.created_at) ? a : b);
-
-    const card = document.createElement('div');
-    card.className = 'bg-white rounded-xl border border-slate-100 shadow-sm px-5 py-4 flex items-center gap-4 fade-in cursor-pointer hover:shadow-md transition';
-    card.onclick = () => abrirModalCliente(c);
-    card.innerHTML = `
-      <div class="w-11 h-11 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold text-lg shrink-0">
-        ${inicial(c.nombre)}
-      </div>
+  const slice = clientes.slice(0, paginaC);
+  let html = '';
+  for (let i = 0; i < slice.length; i++) {
+    const c = slice[i];
+    const total = c.pedidos.length;
+    let sinAvisar = 0;
+    for (let j = 0; j < total; j++) if (!c.pedidos[j].notificado) sinAvisar++;
+    html += `<div class="card-row bg-white rounded-xl border border-slate-100 shadow-sm px-5 py-4 flex items-center gap-4 fade-in cursor-pointer hover:shadow-md transition" data-cli="${esc(claveCliente(c))}">
+      <div class="w-11 h-11 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold text-lg shrink-0">${inicial(c.nombre)}</div>
       <div class="flex-1 min-w-0">
         <p class="font-semibold text-slate-800 truncate">${esc(c.nombre)}</p>
-        <p class="text-xs text-slate-400">+51 ${esc(c.celular)} · último pedido: ${fechaCorta(ultimoPedido.created_at)}</p>
+        <p class="text-xs text-slate-400">+51 ${esc(c.celular)} · último pedido: ${fechaCorta(c.pedidos.find(p => p._t === c._t)?.created_at || c.pedidos[0].created_at)}</p>
       </div>
       <div class="text-right shrink-0">
         <p class="text-lg font-bold text-blue-600">${total}</p>
-        <p class="text-xs text-slate-400">${total===1?'pedido':'pedidos'}</p>
+        <p class="text-xs text-slate-400">${total === 1 ? 'pedido' : 'pedidos'}</p>
         ${sinAvisar > 0
           ? `<p class="text-xs text-orange-500 font-semibold">${sinAvisar} sin avisar</p>`
           : '<p class="text-xs text-green-600">todos avisados</p>'}
-      </div>`;
-    lista.appendChild(card);
-  });
+      </div>
+    </div>`;
+  }
+  if (clientes.length > slice.length) {
+    html += `<button type="button" id="btn-mas-c" class="w-full py-3 text-sm font-medium text-blue-600 bg-white border border-slate-200 rounded-xl hover:bg-blue-50">Cargar más (${clientes.length - slice.length} restantes)</button>`;
+  }
+  lista.innerHTML = html;
 }
 
 // ─── MODAL DETALLE CLIENTE ────────────────────────────────────
@@ -370,25 +427,25 @@ function abrirModalCliente(c) {
   document.getElementById('cli-titulo').textContent = c.nombre;
 
   const porMes = {};
-  c.pedidos.forEach(p => {
+  for (let i = 0; i < c.pedidos.length; i++) {
+    const p = c.pedidos[i];
     const mes = fechaMes(p.created_at);
     if (!porMes[mes]) porMes[mes] = [];
     porMes[mes].push(p);
-  });
-  const meses = Object.keys(porMes).sort((a,b) => {
-    const maxA = Math.max(...porMes[a].map(p => new Date(p.created_at)));
-    const maxB = Math.max(...porMes[b].map(p => new Date(p.created_at)));
+  }
+  const meses = Object.keys(porMes).sort((a, b) => {
+    const maxA = Math.max.apply(null, porMes[a].map(p => p._t));
+    const maxB = Math.max.apply(null, porMes[b].map(p => p._t));
     return maxB - maxA;
   });
 
-  const total     = c.pedidos.length;
-  const avisados  = c.pedidos.filter(p => p.notificado).length;
+  const total = c.pedidos.length;
+  let avisados = 0;
+  for (let i = 0; i < total; i++) if (c.pedidos[i].notificado) avisados++;
 
   let html = `
     <div class="flex items-center gap-4 bg-blue-50 rounded-xl px-4 py-3">
-      <div class="w-12 h-12 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-xl">
-        ${inicial(c.nombre)}
-      </div>
+      <div class="w-12 h-12 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-xl">${inicial(c.nombre)}</div>
       <div>
         <p class="font-semibold text-slate-800">${esc(c.nombre)}</p>
         <p class="text-sm text-slate-500">+51 ${esc(c.celular)}</p>
@@ -404,40 +461,37 @@ function abrirModalCliente(c) {
         <p class="text-xs text-slate-400">Avisados</p>
       </div>
       <div class="bg-slate-50 rounded-xl py-3">
-        <p class="text-2xl font-bold text-orange-500">${total-avisados}</p>
+        <p class="text-2xl font-bold text-orange-500">${total - avisados}</p>
         <p class="text-xs text-slate-400">Sin avisar</p>
       </div>
     </div>
     <p class="text-xs text-slate-400 font-semibold uppercase tracking-wide">Historial de pedidos</p>`;
 
-  meses.forEach(mes => {
-    const pedidos = porMes[mes].sort((a,b) => new Date(b.created_at) - new Date(a.created_at));
+  for (let m = 0; m < meses.length; m++) {
+    const mes = meses[m];
+    const pedidos = porMes[mes].slice().sort((a, b) => b._t - a._t);
     html += `<div>
-      <p class="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-2 capitalize">${mes}</p>
+      <p class="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-2 capitalize">${esc(mes)}</p>
       <div class="space-y-2">`;
-    pedidos.forEach(p => {
-      const notifBadge = p.notificado
-        ? `<span class="notif-si text-xs font-semibold px-2 py-0.5 rounded-full">📨 Avisado</span>`
-        : `<span class="notif-no text-xs font-semibold px-2 py-0.5 rounded-full">📵 Sin avisar</span>`;
+    for (let i = 0; i < pedidos.length; i++) {
+      const p = pedidos[i];
       html += `
-        <div class="flex items-center gap-3 bg-slate-50 rounded-lg px-3 py-2.5 cursor-pointer hover:bg-slate-100 transition"
-             onclick="cerrarModalCliente(); setTimeout(()=>abrirDetalle('${p.id}'),50)">
+        <div class="flex items-center gap-3 bg-slate-50 rounded-lg px-3 py-2.5 cursor-pointer hover:bg-slate-100 transition" data-pid="${esc(p.id)}">
           <div class="flex-1 min-w-0">
             <div class="flex items-center gap-1.5 flex-wrap">
               <span class="font-mono text-sm font-bold text-blue-600">${esc(p.codigo)}</span>
-              ${notifBadge}
+              ${badgeNotif(p.notificado)}
             </div>
-            <p class="text-xs text-slate-400 mt-0.5">📅 ${fechaCorta(p.created_at)}${p.nota?' · '+esc(p.nota):''}</p>
+            <p class="text-xs text-slate-400 mt-0.5">📅 ${fechaCorta(p.created_at)}${p.nota ? ' · ' + esc(p.nota) : ''}</p>
           </div>
-          <a href="${urlWA(p)}" target="_blank" rel="noopener"
-             onclick="event.stopPropagation(); registrarAviso('${p.id}')"
-             class="wa-btn ${p.notificado?'wa-btn-reenviar':'wa-btn-nuevo'} shrink-0 text-xs px-2 py-1.5">
-            ${WA_SVG} ${p.notificado?'Reenviar':'Avisar'}
+          <a href="${urlWA(p)}" target="_blank" rel="noopener" data-aviso="${esc(p.id)}"
+             class="wa-btn ${p.notificado ? 'wa-btn-reenviar' : 'wa-btn-nuevo'} shrink-0 text-xs px-2 py-1.5">
+            ${WA_ICO} ${p.notificado ? 'Reenviar' : 'Avisar'}
           </a>
         </div>`;
-    });
-    html += `</div></div>`;
-  });
+    }
+    html += '</div></div>';
+  }
 
   document.getElementById('cli-contenido').innerHTML = html;
   document.getElementById('modal-cliente').classList.remove('hidden');
@@ -449,12 +503,23 @@ function cerrarModalCliente() {
 // ─── REGISTRAR AVISO ─────────────────────────────────────────
 async function registrarAviso(id) {
   const fecha = new Date().toLocaleDateString('es-PE', { day:'2-digit', month:'short' });
-  const { error } = await sb.from('pedidos').update({ notificado: true, fecha_aviso: fecha }).eq('id', id);
-  if (error) { mostrarToast('❌ Error al guardar'); return; }
+  try {
+    await sb('PATCH', 'pedidos?id=eq.' + encodeURIComponent(id), { notificado: true, fecha_aviso: fecha });
+  } catch (error) {
+    mostrarToast('❌ Error al guardar');
+    return;
+  }
   const idx = todosLosPedidos.findIndex(x => x.id === id);
-  if (idx >= 0) { todosLosPedidos[idx].notificado = true; todosLosPedidos[idx].fecha_aviso = fecha; }
+  if (idx >= 0) {
+    todosLosPedidos[idx].notificado = true;
+    todosLosPedidos[idx].fecha_aviso = fecha;
+  }
+  cacheClientes = null;
+  guardarCache();
   renderPedidos();
   if (seccionActiva === 'clientes') renderClientes();
+  const det = document.getElementById('modal-detalle');
+  if (!det.classList.contains('hidden')) abrirDetalle(id);
   mostrarToast('✅ Aviso enviado por WhatsApp');
 }
 
@@ -462,41 +527,31 @@ async function registrarAviso(id) {
 function sugerirCliente(q) {
   const box = document.getElementById('sugerencias');
   if (!q || q.length < 2) { box.classList.add('hidden'); return; }
-  const mapa = {};
-  todosLosPedidos.forEach(p => {
-    const key = p.nombre.trim().toLowerCase() + '|' + p.celular;
-    if (!mapa[key]) mapa[key] = { nombre: p.nombre, celular: p.celular };
-  });
-  const matches = Object.values(mapa).filter(c =>
-    c.nombre.toLowerCase().includes(q.toLowerCase())).slice(0,4);
+  const ql = q.toLowerCase();
+  const matches = listaClientes().filter(c => c.nombre.toLowerCase().includes(ql)).slice(0, 4);
   if (!matches.length) { box.classList.add('hidden'); return; }
   sugerenciasActuales = matches;
   box.innerHTML = matches.map((c, i) => `
-    <div onclick="elegirCliente(${i})"
-      class="px-3 py-2 text-sm hover:bg-blue-50 cursor-pointer border-b border-slate-100 last:border-0">
+    <div data-sug="${i}" class="px-3 py-2 text-sm hover:bg-blue-50 cursor-pointer border-b border-slate-100 last:border-0">
       <span class="font-medium text-slate-800">${esc(c.nombre)}</span>
       <span class="text-slate-400 text-xs ml-2">+51 ${esc(c.celular)}</span>
     </div>`).join('');
   box.classList.remove('hidden');
 }
-let sugerenciasActuales = [];
 function elegirCliente(i) {
-  const { nombre, celular } = sugerenciasActuales[i] || {};
-  if (!nombre) return;
-  document.getElementById('f-nombre').value  = nombre;
-  document.getElementById('f-celular').value = celular;
+  const c = sugerenciasActuales[i];
+  if (!c) return;
+  document.getElementById('f-nombre').value = c.nombre;
+  document.getElementById('f-celular').value = c.celular;
   document.getElementById('sugerencias').classList.add('hidden');
 }
-document.addEventListener('click', e => {
-  if (!e.target.closest('#f-nombre') && !e.target.closest('#sugerencias'))
-    document.getElementById('sugerencias').classList.add('hidden');
-});
 
 // ─── FILTROS ─────────────────────────────────────────────────
 function setFiltroP(valor) {
   filtroNotif = valor;
+  paginaP = PAGE;
   document.querySelectorAll('[id^="tab-notif-"]').forEach(b => b.classList.remove('tab-activo'));
-  document.getElementById('tab-notif-'+valor).classList.add('tab-activo');
+  document.getElementById('tab-notif-' + valor).classList.add('tab-activo');
   renderPedidos();
 }
 
@@ -513,11 +568,11 @@ function abrirModalEditar(id) {
   const c = todosLosPedidos.find(x => x.id === id);
   if (!c) return;
   document.getElementById('modal-titulo').textContent = 'Editar pedido';
-  document.getElementById('edit-id').value  = c.id;
+  document.getElementById('edit-id').value = c.id;
   document.getElementById('f-codigo').value = c.codigo;
   document.getElementById('f-nombre').value = c.nombre;
-  document.getElementById('f-celular').value= c.celular;
-  document.getElementById('f-nota').value   = c.nota || '';
+  document.getElementById('f-celular').value = c.celular;
+  document.getElementById('f-nota').value = c.nota || '';
   cerrarDetalle();
   document.getElementById('modal').classList.remove('hidden');
 }
@@ -528,32 +583,45 @@ async function guardarPedido(e) {
   const btn = document.getElementById('btn-guardar');
   btn.disabled = true; btn.textContent = 'Guardando...';
 
-  const editId  = document.getElementById('edit-id').value;
+  const editId = document.getElementById('edit-id').value;
   const celular = document.getElementById('f-celular').value.trim().replace(/\D/g,'');
   const payload = {
-    codigo:     document.getElementById('f-codigo').value.trim().toUpperCase(),
-    nombre:     document.getElementById('f-nombre').value.trim(),
+    codigo: document.getElementById('f-codigo').value.trim().toUpperCase(),
+    nombre: document.getElementById('f-nombre').value.trim(),
     celular,
-    nota:       document.getElementById('f-nota').value.trim(),
+    nota: document.getElementById('f-nota').value.trim(),
   };
 
-  let error;
-  if (editId) {
-    ({ error } = await sb.from('pedidos').update(payload).eq('id', editId));
-  } else {
-    payload.id = Date.now().toString();
-    payload.notificado = false;
-    payload.fecha_aviso = null;
-    ({ error } = await sb.from('pedidos').insert(payload));
+  try {
+    if (editId) {
+      const rows = await sb('PATCH', 'pedidos?id=eq.' + encodeURIComponent(editId), payload);
+      const row = rows && rows[0];
+      const idx = todosLosPedidos.findIndex(x => x.id === editId);
+      if (idx >= 0) {
+        Object.assign(todosLosPedidos[idx], row || payload);
+        todosLosPedidos[idx]._t = todosLosPedidos[idx].created_at ? Date.parse(todosLosPedidos[idx].created_at) || 0 : todosLosPedidos[idx]._t;
+      }
+    } else {
+      payload.id = Date.now().toString();
+      payload.notificado = false;
+      payload.fecha_aviso = null;
+      const rows = await sb('POST', 'pedidos', payload);
+      const row = (rows && rows[0]) || { ...payload, created_at: new Date().toISOString() };
+      row._t = row.created_at ? Date.parse(row.created_at) || Date.now() : Date.now();
+      todosLosPedidos.unshift(row);
+    }
+    cacheClientes = null;
+    guardarCache();
+    cerrarModal();
+    paginaP = PAGE;
+    renderPedidos();
+    mostrarToast(editId ? '✏️ Pedido actualizado' : '✅ Pedido guardado');
+  } catch (error) {
+    mostrarToast('❌ Error al guardar');
+    console.error(error);
+  } finally {
+    btn.disabled = false; btn.textContent = 'Guardar';
   }
-
-  btn.disabled = false; btn.textContent = 'Guardar';
-  if (error) { mostrarToast('❌ Error al guardar'); console.error(error); return; }
-
-  await cargarDatos();
-  cerrarModal();
-  renderPedidos();
-  mostrarToast(editId ? '✏️ Pedido actualizado' : '✅ Pedido guardado');
 }
 
 // ─── DETALLE PEDIDO ───────────────────────────────────────────
@@ -565,18 +633,16 @@ function abrirDetalle(id) {
     ? `<div class="flex items-center gap-2 bg-green-50 border border-green-100 rounded-lg px-3 py-2">
          <span class="text-green-600 text-lg">📨</span>
          <div><p class="text-sm font-semibold text-green-700">Ya fue avisado</p>
-         ${c.fecha_aviso?`<p class="text-xs text-green-500">el ${esc(c.fecha_aviso)}</p>`:''}</div>
+         ${c.fecha_aviso ? `<p class="text-xs text-green-500">el ${esc(c.fecha_aviso)}</p>` : ''}</div>
        </div>`
     : `<div class="flex items-center gap-2 bg-orange-50 border border-orange-100 rounded-lg px-3 py-2">
          <span class="text-orange-500 text-lg">📵</span>
          <p class="text-sm font-semibold text-orange-600">Aún no fue avisado</p>
        </div>`;
 
-  const btnWA = c.notificado
-    ? `<a href="${urlWA(c)}" target="_blank" rel="noopener" onclick="registrarAviso('${c.id}')"
-          class="wa-btn wa-btn-reenviar flex-1 py-2.5 text-sm rounded-lg">${WA_SVG} Reenviar aviso</a>`
-    : `<a href="${urlWA(c)}" target="_blank" rel="noopener" onclick="registrarAviso('${c.id}')"
-          class="wa-btn wa-btn-nuevo flex-1 py-2.5 text-sm rounded-lg">${WA_SVG} Avisar recojo por WhatsApp</a>`;
+  const idEsc = esc(c.id);
+  const btnWA = `<a href="${urlWA(c)}" target="_blank" rel="noopener" data-aviso="${idEsc}"
+          class="wa-btn ${c.notificado ? 'wa-btn-reenviar' : 'wa-btn-nuevo'} flex-1 py-2.5 text-sm rounded-lg">${WA_ICO} ${c.notificado ? 'Reenviar aviso' : 'Avisar recojo por WhatsApp'}</a>`;
 
   document.getElementById('detalle-contenido').innerHTML = `
     <div class="flex items-center gap-2 flex-wrap">
@@ -587,13 +653,13 @@ function abrirDetalle(id) {
       <div><span class="text-slate-400">Cliente:</span> <span class="font-semibold text-slate-800">${esc(c.nombre)}</span></div>
       <div><span class="text-slate-400">Celular:</span> <span class="text-slate-800">+51 ${esc(c.celular)}</span></div>
       <div><span class="text-slate-400">Ingreso:</span> <span class="text-slate-700">📅 ${fechaCorta(c.created_at)}</span></div>
-      ${c.nota?`<div><span class="text-slate-400">Nota:</span> <span class="text-slate-700">${esc(c.nota)}</span></div>`:''}
+      ${c.nota ? `<div><span class="text-slate-400">Nota:</span> <span class="text-slate-700">${esc(c.nota)}</span></div>` : ''}
     </div>
     <div class="flex gap-2">${btnWA}</div>
     <div class="flex gap-2">
-      <button onclick="abrirModalEditar('${c.id}')"
+      <button type="button" data-editar="${idEsc}"
         class="flex-1 border border-slate-200 text-slate-600 rounded-lg py-2 text-sm font-medium hover:bg-slate-50">Editar</button>
-      <button onclick="eliminarPedido('${c.id}')"
+      <button type="button" data-borrar="${idEsc}"
         class="flex-1 border border-red-100 text-red-500 rounded-lg py-2 text-sm font-medium hover:bg-red-50">Eliminar</button>
     </div>`;
   document.getElementById('modal-detalle').classList.remove('hidden');
@@ -602,22 +668,89 @@ function cerrarDetalle() { document.getElementById('modal-detalle').classList.ad
 
 async function eliminarPedido(id) {
   if (!confirm('¿Eliminar este pedido?')) return;
-  const { error } = await sb.from('pedidos').delete().eq('id', id);
-  if (error) { mostrarToast('❌ Error al eliminar'); return; }
+  try {
+    await sb('DELETE', 'pedidos?id=eq.' + encodeURIComponent(id));
+  } catch (error) {
+    mostrarToast('❌ Error al eliminar');
+    return;
+  }
   todosLosPedidos = todosLosPedidos.filter(x => x.id !== id);
+  cacheClientes = null;
+  guardarCache();
   cerrarDetalle();
   renderPedidos();
+  if (seccionActiva === 'clientes') renderClientes();
 }
 
 // ─── TOAST ────────────────────────────────────────────────────
+let toastTimer;
 function mostrarToast(msg) {
   const t = document.getElementById('toast');
   t.textContent = msg;
   t.classList.remove('hidden');
-  setTimeout(() => t.classList.add('hidden'), 2500);
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.add('hidden'), 2500);
 }
 
-// ─── ESC / CLICK FUERA ────────────────────────────────────────
+// ─── EVENTOS ─────────────────────────────────────────────────
+document.getElementById('btn-nuevo').addEventListener('click', abrirModalNuevo);
+document.getElementById('nav-pedidos').addEventListener('click', () => irSeccion('pedidos'));
+document.getElementById('nav-clientes').addEventListener('click', () => irSeccion('clientes'));
+document.getElementById('buscador').addEventListener('input', debounce(() => { paginaP = PAGE; renderPedidos(); }, 80));
+document.getElementById('buscador-cli').addEventListener('input', debounce(() => { paginaC = PAGE; renderClientes(); }, 80));
+document.getElementById('orden').addEventListener('change', () => { paginaP = PAGE; renderPedidos(); });
+document.querySelectorAll('[data-filtro]').forEach(b => b.addEventListener('click', () => setFiltroP(b.dataset.filtro)));
+document.getElementById('form-cliente').addEventListener('submit', guardarPedido);
+document.getElementById('f-nombre').addEventListener('input', e => sugerirCliente(e.target.value));
+document.getElementById('sugerencias').addEventListener('click', e => {
+  const row = e.target.closest('[data-sug]');
+  if (row) elegirCliente(Number(row.dataset.sug));
+});
+
+document.getElementById('lista-pedidos').addEventListener('click', e => {
+  if (e.target.closest('#btn-mas-p')) { paginaP += PAGE; renderPedidos(); return; }
+  const aviso = e.target.closest('[data-aviso]');
+  if (aviso) { registrarAviso(aviso.dataset.aviso); return; }
+  const card = e.target.closest('[data-id]');
+  if (card) abrirDetalle(card.dataset.id);
+});
+
+document.getElementById('lista-clientes').addEventListener('click', e => {
+  if (e.target.closest('#btn-mas-c')) { paginaC += PAGE; renderClientes(); return; }
+  const card = e.target.closest('[data-cli]');
+  if (!card) return;
+  const c = listaClientes().find(x => claveCliente(x) === card.dataset.cli);
+  if (c) abrirModalCliente(c);
+});
+
+document.getElementById('cli-contenido').addEventListener('click', e => {
+  const aviso = e.target.closest('[data-aviso]');
+  if (aviso) { registrarAviso(aviso.dataset.aviso); return; }
+  const row = e.target.closest('[data-pid]');
+  if (row) { cerrarModalCliente(); abrirDetalle(row.dataset.pid); }
+});
+
+document.getElementById('detalle-contenido').addEventListener('click', e => {
+  const aviso = e.target.closest('[data-aviso]');
+  if (aviso) { registrarAviso(aviso.dataset.aviso); return; }
+  const ed = e.target.closest('[data-editar]');
+  if (ed) { abrirModalEditar(ed.dataset.editar); return; }
+  const bor = e.target.closest('[data-borrar]');
+  if (bor) eliminarPedido(bor.dataset.borrar);
+});
+
+document.addEventListener('click', e => {
+  if (e.target.closest('[data-close]')) {
+    const tipo = e.target.closest('[data-close]').dataset.close;
+    if (tipo === 'pedido') cerrarModal();
+    else if (tipo === 'detalle') cerrarDetalle();
+    else if (tipo === 'cliente') cerrarModalCliente();
+    return;
+  }
+  if (!e.target.closest('#f-nombre') && !e.target.closest('#sugerencias'))
+    document.getElementById('sugerencias').classList.add('hidden');
+});
+
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') { cerrarModal(); cerrarDetalle(); cerrarModalCliente(); }
 });
@@ -629,7 +762,17 @@ document.addEventListener('keydown', e => {
 
 // ─── INIT ─────────────────────────────────────────────────────
 setFiltroP('todos');
-cargarDatos().then(() => renderPedidos());
+const cached = leerCache();
+if (cached && cached.length) {
+  setPedidos(cached);
+  renderPedidos();
+  cargarDatos(true).then(() => {
+    if (seccionActiva === 'clientes') renderClientes();
+    else renderPedidos();
+  });
+} else {
+  cargarDatos().then(() => renderPedidos());
+}
 </script>
 </body>
 </html>
